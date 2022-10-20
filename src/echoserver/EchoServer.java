@@ -9,6 +9,9 @@ public class EchoServer {
     		try {
       			// Start listening on the specified port
       			ServerSocket sock = new ServerSocket(portNumber);
+			DataInputStream in = new DataInputStream(sock.getInputStream());
+
+			in.write()
 
       			// Run forever, which is common for server style services
       			while (true) {
