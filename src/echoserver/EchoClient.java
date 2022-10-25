@@ -15,13 +15,13 @@ public class EchoClient {
 
 		try {
 			// Create a one way connection to the server
-			Socket socket = new Socket(hostname, portNumber);
+			Socket socker = new Socket(hostname, portNumber);
 
 			// Read the standard input stream
-            // What the user is inputting
-            // Reads a single char and returns the ASCII table value of that char
-		    // Returns -1 if no character has been read(end i think)
-            Reader stdIn = new StringReader(new InputStreamReader(System.in));
+                        // What the user is inputting
+                        // Reads a single char and returns the ASCII table value of that char
+                        // Returns -1 if no character has been read(end i think)
+                        Reader stdIn = new StringReader(new InputStreamReader(System.in));
 
 			// Send a single byte to the server
 
@@ -29,9 +29,9 @@ public class EchoClient {
 			// What the server is sending back to the client
 			// Reads a single char and converts to ASCII table value of that char
 			// Returns -1 if no character has been read(end i think)
-			String out = new DataOutputStream(socket.getOutputStream());
+			DataOutputStream out = new DataOutputStream(socker.getOutputStream());
 			Reader fromServer = new StringReader(out);
-			Writer read = fromServer.read();
+			int read = fromServer.read();
 
 			// Write out the output of the server that we received
 			// Using read means that the output is in binary
@@ -46,16 +46,10 @@ public class EchoClient {
 			//out.write(System.in.read());
 
 			// Get the input stream of the socket
-			InputStream input = socket.getInputStream();
-
-			// Print the input that the server is receiving from the client
-			int line;
-			while ((line = input.read()) != 0) {
-				System.out.println(line);
-			}
+			InputStream input = socker.getInputStream();
 
 			// Close the socket when we're done reading from it
-			socket.close();
+			socker.close();
 
 			// Provide some minimal error handling.
     		} catch (ConnectException ce) {
