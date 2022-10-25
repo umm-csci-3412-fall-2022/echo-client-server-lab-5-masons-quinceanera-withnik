@@ -3,7 +3,7 @@ import java.net.*;
 import java.io.*;
 
 public class EchoClient {
-	public static final int portNumber =420;
+	public static final int portNumber = 420;
 
 	public static void main(String[] args) throws IOException {
 		String hostname;
@@ -38,11 +38,14 @@ public class EchoClient {
 			// Need to convert back to a char
 			// Example uses writer.flush(), look into what it does
 			// Also can't use PrintWriter
+			System.out.println((char)read);
+			/* Don't think we need this; goes on server side maybe?
 			Writer output = new PrintWriter(read);
 			while(read != -1) {
 				output.write((char)(read));
 			}
 			output.flush();
+			*/
 			//out.write(System.in.read());
 
 			// Get the input stream of the socket
