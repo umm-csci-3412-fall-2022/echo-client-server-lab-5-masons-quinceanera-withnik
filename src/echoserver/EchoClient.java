@@ -15,13 +15,13 @@ public class EchoClient {
 
 		try {
 			// Create a one way connection to the server
-			Socket socker = new Socket(hostname, portNumber);
+			Socket socket = new Socket(hostname, portNumber);
 
 			// Read the standard input stream
-                        // What the user is inputting
-                        // Reads a single char and returns the ASCII table value of that char
-                        // Returns -1 if no character has been read(end i think)
-                        Reader stdIn = new StringReader(new InputStreamReader(System.in));
+            // What the user is inputting
+            // Reads a single char and returns the ASCII table value of that char
+		    // Returns -1 if no character has been read(end i think)
+            Reader stdIn = new StringReader(new InputStreamReader(System.in));
 
 			// Send a single byte to the server
 
@@ -29,9 +29,9 @@ public class EchoClient {
 			// What the server is sending back to the client
 			// Reads a single char and converts to ASCII table value of that char
 			// Returns -1 if no character has been read(end i think)
-			DataOutputStream out = new DataOutputStream(socker.getOutputStream());
+			String out = new DataOutputStream(socket.getOutputStream());
 			Reader fromServer = new StringReader(out);
-			int read = fromServer.read();
+			Writer read = fromServer.read();
 
 			// Write out the output of the server that we received
 			// Using read means that the output is in binary
@@ -46,7 +46,7 @@ public class EchoClient {
 			//out.write(System.in.read());
 
 			// Get the input stream of the socket
-			InputStream input = socker.getInputStream();
+			InputStream input = socket.getInputStream();
 
 			// Print the input that the server is receiving from the client
 			int line;
@@ -55,7 +55,7 @@ public class EchoClient {
 			}
 
 			// Close the socket when we're done reading from it
-			socker.close();
+			socket.close();
 
 			// Provide some minimal error handling.
     		} catch (ConnectException ce) {

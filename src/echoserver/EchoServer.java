@@ -9,15 +9,14 @@ public class EchoServer {
     		try {
       			// Start listening on the specified port
       			ServerSocket sock = new ServerSocket(portNumber);
-			DataInputStream in = new DataInputStream(sock.getInputStream());
-
-			in.write()
 
       			// Run forever, which is common for server style services
       			while (true) {
         			// Wait until someone connects, thereby requesting a date
-        			Socket client = sock.accept();
+        			Socket client = sock.accept(); // Waits until a client connects
         			System.out.println("Got a request!");
+
+				// Read from the client
 
         			// Construct a writer so we can write to the socket, thereby
         			// sending something back to the client.
