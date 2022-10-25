@@ -6,24 +6,49 @@ public class EchoClient {
 	public static final int portNumber =420;
 
 	public static void main(String[] args) throws IOException {
-		String server;
+		String hostname;
 		if(args.length == 0) {
-			server 	= "127.0.0.1";
+			hostname = "127.0.0.1";
 		} else {
-			server = args[0];
+			hostname = args[0];
 		}
 
 		try {
-			// Connect to the server
-			Socket socker = new Socket(server, portNumber);
+			// Create a one way connection to the server
+			Socket socker = new Socket(hostname, portNumber);
 
+			// Read the standard input stream
+                        // What the user is inputting
+                        // Reads a single char and returns the ASCII table value of that char
+                        // Returns -1 if no character has been read(end i think)
+                        Reader stdIn = new StringReader(new InputStreamReader(System.in));
+
+			// Send a single byte to the server
+
+			// Read a single byte from the server
+			// What the server is sending back to the client
+			// Reads a single char and converts to ASCII table value of that char
+			// Returns -1 if no character has been read(end i think)
 			DataOutputStream out = new DataOutputStream(socker.getOutputStream());
-			out.write(System.in.read());
+			Reader fromServer = new StringReader(out);
+			int read = fromServer.read();
 
-			// Get the input stream so we can read from that socket
+			// Write out the output of the server that we received
+			// Using read means that the output is in binary
+			// Need to convert back to a char
+			// Example uses writer.flush(), look into what it does
+			// Also can't use PrintWriter
+			Writer output = new PrintWriter(read);
+			while(read != -1) {
+				output.write((char)(read));
+			}
+			output.flush();
+			//out.write(System.in.read());
+
+			// Get the input stream of the socket
 			InputStream input = socker.getInputStream();
 
-			// Print all the input we recieve from the server
+			// Print the input that the server is receiving from the client
 			int line;
 			while ((line = input.read()) != 0) {
 				System.out.println(line);
