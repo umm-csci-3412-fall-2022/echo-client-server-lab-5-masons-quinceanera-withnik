@@ -27,8 +27,8 @@ public class EchoServer {
         				Writer writer = new OutputStreamWriter(client.getOutputStream());
 			
         				// Send the current date back tothe client.	
-					writer.write(rdr.read());
-					System.out.println(rdr.read());
+					client.getOutputStream().write(client.getInputStream().read());
+					
 					// close client
 					//if (rdr.read() == -1) {client.close(); wait = false;}
 						
