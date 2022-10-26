@@ -19,20 +19,13 @@ public class EchoServer {
 				
 				boolean wait = true;
 				while (wait){
-					// Read from the client
-                                	Reader rdr = new InputStreamReader(client.getInputStream());
-		
-        				// Construct a writer so we can write to the socket, thereby
-        				// sending something back to the client.
-        				Writer writer = new OutputStreamWriter(client.getOutputStream());
-			
-        				// Send the current date back tothe client.	
+					
+					//if (client.getInputStream() = 0) {client.close(); wait = false;}	
+						
+					// Writes the contents of the client input stream to its output stream	
 					client.getOutputStream().write(client.getInputStream().read());
 					
-					// close client
-					//if (rdr.read() == -1) {client.close(); wait = false;}
-						
-      				}
+      					}
 				}	
 			
 
