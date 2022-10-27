@@ -22,13 +22,14 @@ public class EchoClient {
                         // What the user is inputting
                         // Reads a single char and returns the ASCII table value of that char
                         // Returns -1 if no character has been read(end i think)
-                        socker.getInputStream().write(System.in);
 			OutputStream output = socker.getOutputStream();
-
-			while (output.read() != -1){
-				System.out.print(output.read());
+			InputStream serverInput = socker.getInputStream();
+			int character;
+			while((character = System.in.read()) != -1){
+				output.write((byte)character);
+				output.flush();
+				System.out.print((char)serverInput.read());
 			}
-
 
 			// Close the socket when we're done reading from it
 			socker.close();

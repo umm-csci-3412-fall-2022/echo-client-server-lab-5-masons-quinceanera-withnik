@@ -23,8 +23,7 @@ public class EchoServer {
 					//if (client.getInputStream() = 0) {client.close(); wait = false;}	
 						
 					// Writes the contents of the client input stream to its output stream	
-					client.getOutputStream().write(client.getInputStream().read());
-					
+					client.getOutputStream().write((byte)client.getInputStream().read());
       					}
 				}	
 			
