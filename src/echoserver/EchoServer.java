@@ -19,12 +19,18 @@ public class EchoServer {
 				
 				boolean wait = true;
 				while (wait){
-					
+					try {
 					//if (client.getInputStream() = 0) {client.close(); wait = false;}	
 						
 					// Writes the contents of the client input stream to its output stream	
 					client.getOutputStream().write((byte)client.getInputStream().read());
       					}
+					
+					catch (SocketException se){
+						client.close();
+						wait = false;
+					}
+				}
 				}	
 			
 
